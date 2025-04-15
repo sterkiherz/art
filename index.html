@@ -22,14 +22,14 @@
   <div class="container">
     <!--VERTICAL MENU SIDEBAR-->
     <aside class="sidebar">
-        <img width="180px" src="https://i.ibb.co/fxp6JV0/Art-Blog-idle.png">
+        <img width="200px" src="https://i.ibb.co/fxp6JV0/Art-Blog-idle.png">
         <h1>Sterki Herz's Art</h1>  
         <br>  
       <img src="logo.png" alt="Logo" class="logo" />
       <nav class="nav">
-        <a href="index.html"><iconify-icon icon="mdi:art"></iconify-icon> Gallery</a>
-        <a href="#about"><iconify-icon icon="mdi:user"></iconify-icon> About</a>
-        <a href="#contact"><iconify-icon icon="tabler:mail-filled"></iconify-icon> Contact</a>
+        <a href="#" data-section="home"><iconify-icon icon="mdi:art"></iconify-icon> Gallery</a>
+        <a href="#" data-section="about"><iconify-icon icon="mdi:user"></iconify-icon> About</a>
+        <a href="#" data-section="contact"><iconify-icon icon="tabler:mail-filled"></iconify-icon> Contact</a>
       </nav>
       <br>
       <div class="socials">
@@ -54,10 +54,34 @@
             <img  width="250px" src="https://i.ibb.co/ZzV0CTf/Sterki-Herz-Logo-nobg-SMALL.png">
         </div>
         
-        <!--filter buttons-->
-        <div align="center" class="filter-buttons" id="filterButtons"></div>
-        <!-- gallery -->
-        <section id="gallery" class="gallery"></section>
+        <!-- |Home/Gallery| -->
+        <div id="homeSection">         
+          
+          <!--filter buttons-->
+          <div align="center" class="filter-buttons" id="filterButtons"></div>
+          
+          <!--loading gallery-->
+           <div id="gallery-loader" class="loader" style="display: none;">
+            <div class="gallery-spinner"></div>
+            <p>Loading gallery...</p>
+          </div> 
+          
+          <!-- gallery -->
+          <section id="gallery" class="gallery"></section>
+        </div>
+
+        <!-- |About Section| -->
+        <div id="aboutSection" style="display: none;">
+          <h2>About Me</h2>
+          <p>Hello! I'm Sterki Herz, a passionate artist who loves creating...</p>
+        </div>
+
+        <!-- |Contact Section| -->
+        <div id="contactSection" style="display: none;">
+          <h2>Contact</h2>
+          <p>You can reach me at: <a href="mailto:sterkiherz@example.com">sterkiherz@example.com</a></p>
+        </div>
+        
     </main>
   </div>
 

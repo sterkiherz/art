@@ -98,6 +98,7 @@
     flex: 1;
     padding: 2rem;
     position: relative; /* Needed for sticky children */
+    transition: opacity 0.4s ease; /*Fade transitions between sections*/
   }
   
   footer {
@@ -107,6 +108,28 @@
     padding: 0.5rem;
   }
   
+
+  .loader {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .gallery-spinner {
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ddd;
+    border-top: 5px solid #a36f5a; /* Accent color */
+    border-radius: 50%;
+    animation: gallery-spin 1s linear infinite;
+  }
+  
+  @keyframes gallery-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }  
+
   .gallery-section {
     margin-bottom: 3rem;
     opacity: 0;
