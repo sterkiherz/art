@@ -17,7 +17,7 @@ async function loadGallery() {
   function displayGallery(filter) {
     gallery.innerHTML = "";
 
-    Object.entries(data).forEach(([category, images]) => {
+    Object.entries(data).forEach(([category, images], index) => {
       const isNSFW = isNSFWCategory(category);
       const showNSFW = nsfwToggle.checked;
 
@@ -26,6 +26,13 @@ async function loadGallery() {
 
       // Apply filter
       if (filter !== "All" && filter !== category) return;
+
+      // Add separator (except before the first category shown)
+      if (index > 0) {
+        const separator = document.createElement("hr");
+        separator.classList.add("category-separator");
+        gallery.appendChild(separator);
+      }
 
       const section = document.createElement("section");
       section.classList.add("gallery-section");

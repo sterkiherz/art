@@ -210,6 +210,14 @@
     cursor: pointer;
   }
   
+  .category-separator {
+    border: none;
+    height: 2px;
+    background-color: #c4a28a; /* your site’s accent color */
+    opacity: 0.5;
+    width: 80%;
+    margin: 4rem auto;
+  }  
   
 
   /* Lightbox */
