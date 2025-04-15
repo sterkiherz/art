@@ -45,12 +45,29 @@ async function loadGallery() {
       grid.className = "gallery-grid";
 
       images.forEach(src => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "image-wrapper";
+
+        const spinner = document.createElement("div");
+        spinner.className = "spinner";
+
         const img = document.createElement("img");
         img.src = decodeURIComponent(src);
         img.alt = category;
         img.className = "gallery-image";
+        img.loading = "lazy";
+
+        // Fade-in when loaded
+        img.addEventListener("load", () => {
+          img.classList.add("loaded");
+          wrapper.removeChild(spinner);
+        });
+
         img.addEventListener("click", () => openLightbox(img.src));
-        grid.appendChild(img);
+        wrapper.appendChild(spinner);
+        wrapper.appendChild(img);
+        grid.appendChild(wrapper);
+        // grid.appendChild(img);
       });
 
       section.appendChild(grid);
