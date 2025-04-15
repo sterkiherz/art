@@ -1,20 +1,31 @@
+let nsfwVisible = true; // Flag to track whether NSFW button should be visible
+
 async function loadGallery() {
   const res = await fetch("gallery.json");
   const data = await res.json();
 
   const gallery = document.getElementById("gallery");
   const filters = document.getElementById("filterButtons");
+  const nsfwToggle = document.getElementById("nsfwToggle");
 
-  const categories = Object.keys(data).filter(cat => cat.toLowerCase() !== "nsfw");
-  const nsfwEnabled = document.getElementById("nsfwToggle");
+  let currentFilter = "All";
+
+  function isNSFWCategory(category) {
+    return category.trim().toLowerCase() === "nsfw";
+  }
 
   function displayGallery(filter) {
     gallery.innerHTML = "";
-    const showNSFW = nsfwEnabled.checked;
 
     Object.entries(data).forEach(([category, images]) => {
-      if (category.toLowerCase() === "nsfw" && !showNSFW) return;
-      if (filter && filter !== category) return;
+      const isNSFW = isNSFWCategory(category);
+      const showNSFW = nsfwToggle.checked;
+
+      // Skip NSFW unless toggled on
+      if (isNSFW && !showNSFW) return;
+
+      // Apply filter
+      if (filter !== "All" && filter !== category) return;
 
       const section = document.createElement("section");
       section.classList.add("gallery-section");
@@ -44,15 +55,25 @@ async function loadGallery() {
 
   function buildFilterButtons() {
     filters.innerHTML = "";
-    ["All", ...categories].forEach(cat => {
+
+    const baseCategories = Object.keys(data).filter(cat => !isNSFWCategory(cat));
+    const allCategories = nsfwToggle.checked
+      ? ["All", ...baseCategories, ...Object.keys(data).filter(isNSFWCategory)]
+      : ["All", ...baseCategories];
+
+    allCategories.forEach(cat => {
       const btn = document.createElement("button");
       btn.textContent = cat;
-      btn.className = cat === "All" ? "active" : "";
+      if (isNSFWCategory(cat)) btn.classList.add("nsfw");
+      if (cat === currentFilter) btn.classList.add("active");
+
       btn.addEventListener("click", () => {
+        currentFilter = cat;
         document.querySelectorAll("#filterButtons button").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        displayGallery(cat === "All" ? null : cat);
+        displayGallery(currentFilter);
       });
+
       filters.appendChild(btn);
     });
   }
@@ -68,15 +89,47 @@ async function loadGallery() {
     document.getElementById("lightbox").classList.add("hidden");
   });
 
-  nsfwEnabled.addEventListener("change", () => {
-    displayGallery(document.querySelector("#filterButtons .active")?.textContent || null);
+  nsfwToggle.addEventListener("change", () => {
+    const wantsNSFW = nsfwToggle.checked;
+  
+    if (wantsNSFW && nsfwVisible) {
+      const modal = document.getElementById("nsfw-modal");
+      const modalYes = document.getElementById("modal-yes");
+      const modalNo = document.getElementById("modal-no");
+  
+      modal.style.display = "block";
+  
+      // Prevent duplicate listeners
+      modalYes.onclick = () => {
+        modal.style.display = "none";
+        nsfwVisible = true;
+        buildFilterButtons();
+        displayGallery(currentFilter);
+      };
+  
+      modalNo.onclick = () => {
+        modal.style.display = "none";
+        nsfwVisible = false;
+        nsfwToggle.checked = false;
+        currentFilter = "All";
+        buildFilterButtons();
+        displayGallery(currentFilter);
+      };
+    } else {
+      if (!wantsNSFW && isNSFWCategory(currentFilter)) {
+        currentFilter = "All";
+      }
+      buildFilterButtons();
+      displayGallery(currentFilter);
+    }
   });
+  
 
   buildFilterButtons();
-  displayGallery();
+  displayGallery(currentFilter);
 }
 
-// Fade-in on scroll
+// Fade-in animation function
 function observeFadeIn() {
   const sections = document.querySelectorAll(".gallery-section");
   const observer = new IntersectionObserver(entries => {

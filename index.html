@@ -16,12 +16,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   
+  <!--minimasonry.js-->
+  <script src="https://cdn.jsdelivr.net/npm/minimasonry@1.1.0/dist/minimasonry.min.js"></script>
+
 
 </head>
 <body>
   <div class="container">
     <!--VERTICAL MENU SIDEBAR-->
     <aside class="sidebar">
+        <h1>Sterki Herz's Art</h1>  
+        <br>  
       <img src="logo.png" alt="Logo" class="logo" />
       <nav class="nav">
         <a href="#gallery"><iconify-icon icon="mdi:art"></iconify-icon> Gallery</a>
@@ -43,10 +48,10 @@
       </label>
     </aside>
 
+    <!--   MAIN CONTENT    -->
     <main class="content">
-      <h1>Welcome to my Portfolio!</h1>  
-      <section id="gallery" class="gallery"></section>
-      <div class="filter-buttons" id="filterButtons"></div>
+        <div class="filter-buttons" id="filterButtons"></div>
+        <section id="gallery" class="gallery"></section>
     </main>
   </div>
 
@@ -61,6 +66,18 @@
     <img id="lightbox-img" src="" alt="Zoomed" />
   </div>
 
+<!-- NSFW Warning Modal -->
+<div id="nsfw-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <p>Warning: This content contains NSFW material. Do you wish to view it?</p>
+      <button id="modal-yes">Yes</button>
+      <button id="modal-no">No</button>
+    </div>
+  </div>
+  
+  
+
   <script src="/scripts/script.js"></script>
+   
 </body>
 </html>
