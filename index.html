@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sterki Herz's Art</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!--favicon-->
+  
+  <!--icons-->
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+  <!--google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+
+</head>
+<body>
+  <div class="container">
+    <!--VERTICAL MENU SIDEBAR-->
+    <aside class="sidebar">
+      <img src="logo.png" alt="Logo" class="logo" />
+      <nav class="nav">
+        <a href="#gallery"><iconify-icon icon="mdi:art"></iconify-icon> Gallery</a>
+        <a href="#about"><iconify-icon icon="mdi:user"></iconify-icon> About</a>
+        <a href="#contact"><iconify-icon icon="tabler:mail-filled"></iconify-icon> Contact</a>
+      </nav>
+      <br>
+      <div class="socials">
+        <a href="https://sterkiherz.tumblr.com/"><iconify-icon icon="ri:tumblr-fill"></iconify-icon></a>
+        <a href="http://bsky.app/profile/sterkiherz.bsky.social"><iconify-icon icon="ri:bluesky-fill"></iconify-icon></a>
+        <a href="https://sterkiherz.netlify.app/"><iconify-icon icon="mdi:web"></iconify-icon></a>
+        <a href="https://www.youtube.com/@SterkiHerz"><iconify-icon icon="mdi:youtube"></iconify-icon></a>
+      
+    </div>
+      <label class="nsfw-toggle">
+        <input type="checkbox" id="nsfwToggle" />
+        <iconify-icon icon="material-symbols:warning-rounded"></iconify-icon></a>
+        Show NSFW
+      </label>
+    </aside>
+
+    <main class="content">
+      <h1>Welcome to my Portfolio!</h1>  
+      <section id="gallery" class="gallery"></section>
+      <div class="filter-buttons" id="filterButtons"></div>
+    </main>
+  </div>
+
+  <footer>
+    <span>© 2018 Sterki Herz</span>
+    <img width="50px" src="tiny-icon.png" alt="Tiny icon" />
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox hidden">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoomed" />
+  </div>
+
+  <script src="/scripts/script.js"></script>
+</body>
+</html>
