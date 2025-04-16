@@ -25,3 +25,8 @@ function showSection(section) {
   // Optional: Update URL without reloading
   history.pushState({ section }, '', `#${section}`);
 }
+
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
