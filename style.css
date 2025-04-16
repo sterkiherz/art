@@ -2,7 +2,7 @@
   --cream: #2e172a;
   --brown: #5d3054;
   --green: #200c1c;
-  --highlight: #fda878;
+  --highlight: #5df1ff;
   --primary-font: 'Raleway', sans-serif;
   --heading-font: 'Amaranth', sans-serif;
   --font-color: rgb(126, 84, 98);
@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav a {
   display: block;
-  color: white;
+  color: var(--highlight);
   margin: 0.5rem 0;
   font-size: larger;
   text-decoration: none;
@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav a:hover {
-  color: var(--highlight);
+  color: white;
   background-color: #3a1429;
   padding-bottom: 8px;
   padding-top: 8px;
@@ -124,7 +124,6 @@ footer {
   text-align: center;
   margin-top: 2rem;
 }
-
 
 /* Gallery Section */
 #gallery {
@@ -281,6 +280,14 @@ footer {
   flex: 1;
   position: relative;
   min-width: 300px;
+}
+
+.about-text a {
+  color: #ac6464;
+}
+
+.about-text a:hover {
+  color: #ea9d62;
 }
 
 .banner {
