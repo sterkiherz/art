@@ -56,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo {
   width: 100px;
   margin-bottom: 1rem;
+  border-radius: 12px;
 }
 
 .nav a {
@@ -368,19 +369,21 @@ footer {
 .modal {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
 }
 
 .modal-content {
-  background: #fff;
-  color: #000;
+  background: white;
   padding: 2em;
-  border-radius: 10px;
-  max-width: 300px;
+  border-radius: 8px;
   text-align: center;
 }
 
@@ -422,7 +425,7 @@ footer {
     margin-bottom: 0;
   }
 
-  .nav, .socials {
+  .nav {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -447,7 +450,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   #gallery {
     column-count: 2;
   }
@@ -456,15 +459,9 @@ footer {
     flex-direction: row;
     align-items: center;
   }
-}
-
-@media screen and (max-width: 480px) {
-  #gallery {
-    column-count: 1;
-  }
 
   .logo {
-    width: 60px;
+    width: 45px;
   }
 
   h1, h2, h3 {

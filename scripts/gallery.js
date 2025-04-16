@@ -4,6 +4,7 @@ const baseUrl = `https://api.github.com/repos/${owner}/${repo}/contents/gallery`
 const nav = document.getElementById("categoryNav");
 const gallery = document.getElementById("gallery");
 
+
 // Fetch folders for navigation
 async function fetchFolders() {
     const response = await fetch(baseUrl);
@@ -11,15 +12,35 @@ async function fetchFolders() {
     const folders = data.filter(item => item.type === "dir");
   
 // Create navigation buttons
-    folders.forEach((folder, index) => {
-      const button = document.createElement("button");
-      button.textContent = folder.name;
-      button.onclick = () => fetchImages(folder.name);
-      nav.appendChild(button);
+  folders.forEach((folder, index) => {
+    if (folder.name.toLowerCase() === "nsfw" && !nsfwAllowed) {
+      return; // Skip NSFW unless permission is granted
+    }
+
+    const button = document.createElement("button");
+    button.textContent = folder.name;
+    button.onclick = () => fetchImages(folder.name);
+    nav.appendChild(button);
+
+    // Load the first available folder by default
+    // if (index === 0) fetchImages(folder.name);
+    
+    // Load "Illustration" folder by default
+    if (folder.name === "Illustration") {
+      fetchImages(folder.name);
+    }
+    
+  });
+    // folders.forEach((folder, index) => {
+    //   const button = document.createElement("button");
+    //   button.textContent = folder.name;
+    //   button.onclick = () => fetchImages(folder.name);
+    //   nav.appendChild(button);
   
-      // Load the first folder by default
-      if (index === 0) fetchImages(folder.name);
-    });
+    //   // Load the first folder by default
+    //   if (index === 0) fetchImages(folder.name);
+    // });
+
   }
   
 // Select popup elements
@@ -62,3 +83,45 @@ popup.onclick = (e) => {
   
   // Initialize navigation
   fetchFolders();
+
+
+  function refreshFolders() {
+    nav.innerHTML = ""; // Clear current buttons
+    fetchFolders();     // Fetch again with updated NSFW permission
+  }
+  
+
+
+//-----------------handles the nsfw button------------------------ 
+const nsfwToggle = document.getElementById("nsfwToggle");
+const nsfwModal = document.getElementById("nsfw-confirm-modal");
+const confirmYes = document.getElementById("confirm-nsfw-yes");
+const confirmNo = document.getElementById("confirm-nsfw-no");
+let userInteracted = false;
+let nsfwAllowed = false;
+
+nsfwToggle.addEventListener("click", (e) => {
+  // Only trigger modal if user is enabling NSFW and hasn't confirmed yet
+  if (nsfwToggle.checked && !nsfwAllowed) {
+    e.preventDefault(); // Prevent the toggle from actually switching
+    nsfwModal.classList.add("show");
+  } else if (!nsfwToggle.checked && nsfwAllowed) {
+    // User is unchecking it after previously allowing
+    nsfwAllowed = false;
+    refreshFolders();
+  }
+});
+
+
+confirmYes.addEventListener("click", () => {
+  nsfwAllowed = true;
+  nsfwToggle.checked = true; // Set it manually since we prevented default toggle
+  nsfwModal.classList.remove("show");
+  refreshFolders(); // Reload buttons with NSFW
+});
+
+confirmNo.addEventListener("click", () => {
+  nsfwToggle.checked = false;
+  nsfwModal.classList.remove("show");
+});
+
