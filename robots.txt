@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+
+# Allow everything except images (more selective):
+# User-agent: *
+# Disallow: /gallery
