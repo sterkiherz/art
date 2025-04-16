@@ -314,6 +314,15 @@ footer {
   z-index: 3;
 }
 
+.souffle-img {
+  width: 180px;
+  object-fit: contain;
+  position: relative;
+  top: -25px;
+  left: 90px;
+  z-index: 3;
+}
+
 .about-box {
   background: #fcebe5;
   border-radius: 2rem;
@@ -322,6 +331,17 @@ footer {
   color: #522546;
   position: relative;
   z-index: 2;
+}
+
+.about-box2 {
+  background: #fcebe5;
+  border-radius: 2rem;
+  padding: 2rem;
+  font-family: var(--primary-font);
+  color: #522546;
+  position: relative;
+  z-index: 2;
+  top: -60px;
 }
 
 .about-image {
