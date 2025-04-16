@@ -30,3 +30,24 @@ document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
 
+//cursor particles
+document.addEventListener("mousemove", (e) => {
+  const particle = document.createElement("div");
+  particle.classList.add("cursor-particle");
+
+  // ⬇️ Add this: Random size between 4px and 8px
+  const size = Math.random() * 4 + 4; // 4 to 8
+  particle.style.width = `${size}px`;
+  particle.style.height = `${size}px`;
+
+  particle.style.left = `${e.clientX}px`;
+  particle.style.top = `${e.clientY}px`;
+
+  document.body.appendChild(particle);
+
+  setTimeout(() => {
+    particle.remove();
+  }, 500); // match fadeOut animation duration
+});
+
+

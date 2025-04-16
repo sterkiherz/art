@@ -17,9 +17,45 @@ async function fetchFolders() {
       return; // Skip NSFW unless permission is granted
     }
 
+    //button creation
     const button = document.createElement("button");
     button.textContent = folder.name;
     button.onclick = () => fetchImages(folder.name);
+
+    // Add custom class if it's the NSFW button
+    if (folder.name.toLowerCase() === "nsfw") {
+      button.classList.add("nsfw-button");
+    
+      // Add floating heart animation
+      button.addEventListener("mouseenter", () => {
+        const heartInterval = setInterval(() => {
+          const heart = document.createElement("span");
+          heart.className = "heart-particle";
+          heart.textContent = "❤";
+
+          const x = Math.random() * button.offsetWidth;
+          const y = Math.random() * button.offsetHeight;
+
+          heart.style.left = `${x}px`;
+          heart.style.top = `${y}px`;
+
+          button.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 1000);
+        }, 150);
+
+        button.addEventListener(
+          "mouseleave",
+          () => {
+            clearInterval(heartInterval);
+          },
+          { once: true }
+        );
+      });
+    }
+
     nav.appendChild(button);
 
     // Load the first available folder by default
@@ -31,15 +67,6 @@ async function fetchFolders() {
     }
     
   });
-    // folders.forEach((folder, index) => {
-    //   const button = document.createElement("button");
-    //   button.textContent = folder.name;
-    //   button.onclick = () => fetchImages(folder.name);
-    //   nav.appendChild(button);
-  
-    //   // Load the first folder by default
-    //   if (index === 0) fetchImages(folder.name);
-    // });
 
   }
   
@@ -79,11 +106,9 @@ popup.onclick = (e) => {
     popup.classList.add("hidden");
   }
 };
-
   
   // Initialize navigation
   fetchFolders();
-
 
   function refreshFolders() {
     nav.innerHTML = ""; // Clear current buttons
@@ -111,7 +136,6 @@ nsfwToggle.addEventListener("click", (e) => {
     refreshFolders();
   }
 });
-
 
 confirmYes.addEventListener("click", () => {
   nsfwAllowed = true;

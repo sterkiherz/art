@@ -25,6 +25,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- preloader -->
+  <div id="preloader">
+    <iconify-icon icon="solar:cat-linear" class="loader"></iconify-icon>
+  </div>
+  
+  <!--<div id="particles-js"></div>-->
+  <div class="fireflies"></div>
+
+  <div class="overlay"></div>
+
   <div class="container">
     <!--VERTICAL MENU SIDEBAR-->
     <aside class="sidebar">
@@ -168,7 +179,8 @@
   <!-- NSFW Warning -->
   <div id="nsfw-confirm-modal" class="modal">
     <div class="modal-content">
-      <p>This section contains mature content. Are you 18 or older?</p>
+      <p>This section contains <b>mature content that may not be suitable for minors</b>. Do you wish to continue?</p>
+      <small>(A new button will appear).</small><br>
       <button id="confirm-nsfw-yes">Yes</button>
       <button id="confirm-nsfw-no">No</button>
     </div>
@@ -176,5 +188,36 @@
   
   <script src="/scripts/gallery.js"></script>
   <script src="/scripts/script.js"></script>
+
+  <script>
+    //fireflies
+    document.addEventListener('DOMContentLoaded', () => {
+      const firefliesContainer = document.querySelector('.fireflies');
+    
+      for (let i = 0; i < 50; i++) {
+        const firefly = document.createElement('div');
+        firefly.classList.add('firefly');
+        firefly.style.top = Math.random() * 100 + 'vh';
+        firefly.style.left = Math.random() * 100 + 'vw';
+        firefly.style.setProperty('--dx', Math.random() - 0.5);
+        firefly.style.setProperty('--dy', Math.random() - 0.5);
+        firefliesContainer.appendChild(firefly);
+      }
+    });
+
+
+    //preloader
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => {
+          preloader.style.display = "none";
+      }, 500); // Adjust the delay to match the fade-out duration if needed
+      });
+    </script>
+
+
+
+
 </body>
 </html>

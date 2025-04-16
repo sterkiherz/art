@@ -6,6 +6,7 @@
   --primary-font: 'Raleway', sans-serif;
   --heading-font: 'Amaranth', sans-serif;
   --font-color: rgb(126, 84, 98);
+  --preloader-bg: #ffb75f;
 }
 
 * {
@@ -16,12 +17,129 @@
 
 body {
   font-family: var(--primary-font);
-  background: var(--cream);
+  /* background: var(--cream); */
+  background: url("https://i.ibb.co/YWcxDk9/Tr8A21D.png") no-repeat center center fixed;
+  background-size: cover;
   color: var(--font-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* Default cursor for everything */
+  cursor: url("assets/default.cur"), auto;
 }
+
+/* ✨ This creates the dark overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* adjust the last number for more or less darkness */
+  z-index: 0;
+  pointer-events: none; /* allows clicks to pass through */
+}
+
+/* Custom cursor when hovering over links or clickable elements */
+a,
+button,
+input[type="submit"],
+input[type="button"],
+label,
+.selectable,
+[role="button"] {
+  cursor: url("assets/link.cur"), pointer;
+}
+
+.cursor-particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.7); /* subtle white glow */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fadeOut 0.5s ease-out forwards;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* preloader */
+/* Preloader Container */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--preloader-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it appears above all other content */
+}
+
+/* Loader Animation for Iconify Icon */
+.loader {
+  font-size: 3.12rem; /* Adjust size as needed */
+  color: #ffffff; /* Adjust color to match your design */
+  animation: zoomInOut 1s ease-in-out infinite; /* Add zoom animation */
+}
+/* Zoom Animation */
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.2); /* Slightly bigger */
+  }
+}
+
+/* Fireflies container */
+.fireflies {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0; /* Ensure it's above the content */
+  }
+  
+  .firefly {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 238, 0.066);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 176, 0.17);
+  animation: move 5s linear infinite, glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(100vw * var(--dx)), calc(100vh * var(--dy)));
+  }
+  }
+  
+  @keyframes glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  }
 
 /* Headings Font */
 h1, h2, h3, h4, h5, h6 {
@@ -112,6 +230,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.4s ease;
   /* margin-left: 15px; This is to leave space for the sidebar, but we'll also tweak this */
   box-sizing: border-box; /* Ensure padding doesn't affect width */
+  z-index: 1;
 }
 
 footer {
@@ -130,6 +249,7 @@ footer {
 #gallery {
   column-count: 4; /* Masonry effect */
   column-gap: 10px;
+  
 }
 #gallery img {
   width: 100%;
@@ -164,7 +284,7 @@ footer {
 #categoryNav button {
   padding: 10px 15px;
   border: none;
-  background-color: #61325c;
+  background-color: #ac6464;
   color: white;
   margin-bottom: 15px;
   margin-top: 5px;
@@ -175,11 +295,49 @@ footer {
   transition: background-color 0.3s;
 }
 #categoryNav button:hover {
-  background-color: #ac6464;
+  background-color: #e6a549;
 }
 
+/* NSFW Button Overrides */
+#categoryNav .nsfw-button {
+  background-color: #c1666f !important;
+  color: #ffbee3 !important;
+  font-weight: bold;
+}
+
+#categoryNav .nsfw-button:hover {
+  background-color: #fc5865 !important;
+  color: #ffffff !important;
+}
+
+.nsfw-button {
+  position: relative; /* Needed for particle positioning */
+  overflow: hidden;
+}
+
+.heart-particle {
+  position: absolute;
+  color: #cd2040;
+  font-size: 12px;
+  pointer-events: none;
+  animation: floatHeart 1s ease-out forwards;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+
 /* Lightbox */
-/* Popup styles */
 #popup {
   display: flex;
   justify-content: center;
@@ -387,12 +545,20 @@ footer {
   text-align: center;
 }
 
-
 .modal button {
   margin: 10px;
   padding: 10px;
   cursor: pointer;
+  background-color: #c1666f;
+  border-radius: 8px;
+  border: none;
+  color: white;
 }
+
+.modal button:hover {
+  background-color: #f26674;
+}
+
 
 /* Category Separator */
 .category-separator {
