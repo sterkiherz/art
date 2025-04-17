@@ -7,26 +7,55 @@ const gallery = document.getElementById("gallery");
 
 // Fetch folders for navigation
 async function fetchFolders() {
-    const response = await fetch(baseUrl);
-    const data = await response.json();
-    const folders = data.filter(item => item.type === "dir");
-  
-// Create navigation buttons
+  const response = await fetch(baseUrl);
+  const data = await response.json();
+  const folders = data.filter(item => item.type === "dir");
+
+  // Create navigation buttons
   folders.forEach((folder, index) => {
     if (folder.name.toLowerCase() === "nsfw" && !nsfwAllowed) {
       return; // Skip NSFW unless permission is granted
     }
 
-    //button creation
+    // Create the button
     const button = document.createElement("button");
-    button.textContent = folder.name;
+
+    // Icon span
+    const icon = document.createElement("span");
+    icon.className = "category-icon";
+
+    // Choose emoji based on folder name
+    switch (folder.name.toLowerCase()) {
+      case "illustration":
+        icon.textContent = "🎨 ";
+        break;
+      case "character work":
+        icon.textContent = "🐈 ";
+        break;
+      case "graphic design":
+        icon.textContent = "✨ ";
+        break;
+      case "nsfw":
+        icon.textContent = "🔞 ";
+        break;
+      default:
+        icon.textContent = "🍰 ";
+    }
+
+    // Label span
+    const label = document.createElement("span");
+    label.textContent = folder.name;
+
+    // Combine icon + label into button
+    button.appendChild(icon);
+    button.appendChild(label);
     button.onclick = () => fetchImages(folder.name);
 
-    // Add custom class if it's the NSFW button
+    // Special handling for NSFW button
     if (folder.name.toLowerCase() === "nsfw") {
       button.classList.add("nsfw-button");
-    
-      // Add floating heart animation
+
+      // Floating hearts animation
       button.addEventListener("mouseenter", () => {
         const heartInterval = setInterval(() => {
           const heart = document.createElement("span");
@@ -58,17 +87,13 @@ async function fetchFolders() {
 
     nav.appendChild(button);
 
-    // Load the first available folder by default
-    // if (index === 0) fetchImages(folder.name);
-    
     // Load "Illustration" folder by default
     if (folder.name === "Illustration") {
       fetchImages(folder.name);
     }
-    
   });
+}
 
-  }
   
 // Select popup elements
 const popup = document.getElementById("popup");
