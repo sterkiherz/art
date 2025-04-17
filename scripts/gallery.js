@@ -27,19 +27,19 @@ async function fetchFolders() {
     // Choose emoji based on folder name
     switch (folder.name.toLowerCase()) {
       case "illustration":
-        icon.textContent = "🎨 ";
+        icon.textContent = "✦ ";
         break;
       case "character work":
-        icon.textContent = "🐈 ";
+        icon.textContent = "✦ ";
         break;
       case "graphic design":
-        icon.textContent = "✨ ";
+        icon.textContent = "✦ ";
         break;
       case "nsfw":
-        icon.textContent = "🔞 ";
+        icon.textContent = "✦ ";
         break;
       default:
-        icon.textContent = "🍰 ";
+        icon.textContent = "✦ ";
     }
 
     // Label span
