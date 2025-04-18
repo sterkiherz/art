@@ -874,10 +874,30 @@ footer {
 
   .portrait-img {
     width: 200px;
-    margin-top: 160px;
     height: auto;
     max-width: 100%;
     display: block;
+  }
+
+  .banner {
+    padding-left: 1px;
+  }
+
+  .donut-img {
+    left: 0;
+  }
+
+  .souffle-img {
+    left: 0;
+  }
+
+  .about-heading {
+    gap: 0;
+  }
+
+  .about-heading h2 {
+    font-size: large;
+    margin: 10px;
   }
 
 }
