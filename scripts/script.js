@@ -50,27 +50,26 @@ document.addEventListener("mousemove", (e) => {
   }, 500); // match fadeOut animation duration
 });
 
-//landing page logic
+// landing page logic - auto fade after 4s
 window.addEventListener("DOMContentLoaded", () => {
-  const enterBtn = document.getElementById("enterBtn");
   const landing = document.getElementById("landing");
   const content = document.querySelector(".content");
 
-  // Show the button after 4 seconds
   setTimeout(() => {
-    enterBtn.classList.remove("hidden");
-    enterBtn.classList.add("fade-in");
-  }, 4000);
-
-  // Fade out landing and show content when button is clicked
-  enterBtn.addEventListener("click", () => {
     landing.classList.add("fade-out");
+
+    // Reveal content after fade-out completes
     setTimeout(() => {
-      landing.style.display = "none";
+      landing.remove(); // completely remove the landing div
       content.classList.remove("hidden");
-    }, 1000); // Match fade-out transition
-  });
+      content.classList.add("fade-in");
+    }, 1000); // matches your CSS transition duration
+  }, 4250); // 4 seconds = duration of GIF
 });
+
+
+
+
 
 
 

@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- preloader -->
@@ -38,8 +39,7 @@
    <!-- Landing Page - Intro -->
    <div id="landing">
     <img src="assets/portfolio-intro.gif" alt="Landing animation" />
-    <button id="enterBtn" class="hidden"><iconify-icon icon="line-md:github-loop"></iconify-icon> Enter!</button> <!-- Optional -->
-  </div>
+   </div>
   
   <!-- Main Site Content -->
   <div class="content hidden">
@@ -49,14 +49,15 @@
     <div class="container">
       <!--VERTICAL MENU SIDEBAR-->
       <aside class="sidebar">
-          <img id="palette" width="200px" src="https://i.ibb.co/fxp6JV0/Art-Blog-idle.png">
+        <img id="palette" width="160px" src="https://i.ibb.co/fxp6JV0/Art-Blog-idle.png">
+          
           <h1>Sterki Herz's Art</h1>  
           <br>  
         <img src="logo.png" alt="Logo" class="logo" />
         <nav class="nav">
-          <a href="#" data-section="home"><iconify-icon icon="mdi:art"></iconify-icon> Gallery</a>
-          <a href="#" data-section="about"><iconify-icon icon="mdi:user"></iconify-icon> About</a>
-          <a href="#" data-section="contact"><iconify-icon icon="tabler:mail-filled"></iconify-icon> Contact</a>
+          <a href="#" data-section="home"><iconify-icon icon="mingcute:paint-brush-ai-line"></iconify-icon> Gallery</a>
+          <a href="#" data-section="about"><iconify-icon icon="solar:cat-linear"></iconify-icon> About</a>
+          <a href="#" data-section="contact"><iconify-icon icon="bi:chat-heart"></iconify-icon> Contact</a>
         </nav>
         <br>
         <div class="socials">
@@ -64,25 +65,37 @@
           <a href="http://bsky.app/profile/sterkiherz.bsky.social"><iconify-icon icon="ri:bluesky-fill"></iconify-icon></a>
           <a href="https://sterkiherz.netlify.app/"><iconify-icon icon="mdi:web"></iconify-icon></a>
           <a href="https://www.youtube.com/@SterkiHerz"><iconify-icon icon="mdi:youtube"></iconify-icon></a>
+          <a href="https://sterkiherz.itch.io/"><iconify-icon icon="fa-brands:itch-io"></iconify-icon></a>
+        
         </div>
 
         <label class="nsfw-toggle">
           <input type="checkbox" id="nsfwToggle" />
-          <iconify-icon icon="material-symbols:warning-rounded"></iconify-icon>
-          Show NSFW
+          <span class="toggle-switch"></span>
+          <span class="toggle-label">
+            <iconify-icon icon="material-symbols:warning-rounded"></iconify-icon>
+            <span id="nsfwText">Show NSFW</span>
+          </span>
         </label>
-
-        <img width="50px" src="tiny-icon.png" alt="Tiny icon" />
 
       </aside>
 
       <!--   MAIN CONTENT    -->
       <main class="content">
-          <!--logo-->
-          <div align="center">
-              <img  width="250px" src="https://i.ibb.co/ZzV0CTf/Sterki-Herz-Logo-nobg-SMALL.png">
-          </div>
-          
+
+          <!-- Hero Parallax Banner -->
+          <section class="hero-parallax">
+            <div class="hero-overlay">
+              <h2><iconify-icon icon="solar:cat-linear"></iconify-icon></h2>
+              <h2>Welcome to My World!</h2>
+              <p style="font-style: italic;">~ Where stories are drawn and emotions come to life ~</p>
+            </div>
+            <!--logo-->
+            <div align="center" class="sh-logo">
+              <img  width="450px" src="https://i.ibb.co/ZzV0CTf/Sterki-Herz-Logo-nobg-SMALL.png">
+            </div>
+          </section>
+
           <!-- |Home/Gallery| -->
           <div id="homeSection">         
             

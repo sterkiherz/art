@@ -102,27 +102,45 @@ const closeBtn = document.getElementById("close");
 
 // Fetch and display images from a specific folder
 async function fetchImages(folder) {
+  gallery.classList.add("gallery-loading"); // apply blur/fade
+
   const response = await fetch(`${baseUrl}/${folder}`);
   const data = await response.json();
-  gallery.innerHTML = ""; // Clear existing images
 
-  // Display images in the gallery
-  data.forEach(file => {
-    if (file.type === "file" && /\.(jpg|jpeg|png|gif|webp|avif)$/i.test(file.name)) { // Include WebP
-      const img = document.createElement("img");
-      img.src = file.download_url;
-      img.alt = file.name;
+  // Clear old images
+  gallery.innerHTML = "";
 
-      // Add click event for opening popup
-      img.onclick = () => {
-        popup.classList.remove("hidden");
-        popupImg.src = img.src; // Set popup image source
-      };
+  // Delay just slightly to show the transition
+  setTimeout(() => {
+    data.forEach(file => {
+      if (file.type === "file" && /\.(jpg|jpeg|png|gif|webp|avif)$/i.test(file.name)) {
+        const img = document.createElement("img");
+        img.src = file.download_url;
+        img.alt = file.name;
 
-      gallery.appendChild(img);
-    }
-  });
+        // When the image fully loads, fade it in
+        img.onload = () => {
+          img.classList.add("loaded");
+        };
+
+        img.onclick = () => {
+          popup.classList.remove("hidden");
+          popupImg.src = img.src;
+        };
+
+        gallery.appendChild(img);
+
+      }
+    });
+
+    // Remove the blur/fade after short delay (once images are inserted)
+    setTimeout(() => {
+      gallery.classList.remove("gallery-loading");
+    }, 100); // adjust this to match your transition time
+
+  }, 50); // optional delay before showing images
 }
+
 
 // Close popup when clicking the close button or outside the image
 closeBtn.onclick = () => popup.classList.add("hidden");
