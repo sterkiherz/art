@@ -676,29 +676,6 @@ footer {
   height: auto;
 }
 
-#enterBtn {
-  /* padding: 13px; */
-  padding-left: 55px;
-  padding-right: 55px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border: none;
-  background-color: #ac6464;
-  color: white;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: var(--heading-font);
-  font-size: large;
-}
-#enterBtn:hover {
-  background-color: #e6a549;
-}
-
 /* Hide main content initially */
 .content.hidden {
   display: none;
@@ -816,6 +793,11 @@ footer {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 1rem 0;
+  }
+
+  #landing img {
+    max-width: 85%;
+    height: auto;
   }
 
   .logo {
