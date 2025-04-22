@@ -82,6 +82,31 @@ label,
   }
 }
 
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #200C1C;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--highlight);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight);
+}
+/* Firefox */
+* {
+  scrollbar-width: thin; /* auto | thin | none */
+  scrollbar-color: var(--highlight) #200C1C; /* thumb | track */
+}
+
+
 /* preloader */
 /* Preloader Container */
 #preloader {
@@ -245,7 +270,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer {
-  background: var(--green);
+  background: #3a1429;
   color: white;
   text-align: center;
   padding: 0.5rem;

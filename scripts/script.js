@@ -14,17 +14,46 @@ function showSection(section) {
   document.getElementById('contactSection').style.display = 'none';
 
   // Show the selected section
+  let targetSection;
   if (section === 'home') {
-    document.getElementById('homeSection').style.display = '';
+    targetSection = document.getElementById('homeSection');
   } else if (section === 'about') {
-    document.getElementById('aboutSection').style.display = '';
+    targetSection = document.getElementById('aboutSection');
   } else if (section === 'contact') {
-    document.getElementById('contactSection').style.display = '';
+    targetSection = document.getElementById('contactSection');
+  }
+
+  if (targetSection) {
+    targetSection.style.display = '';
+
+    // Scroll to the section after it's shown
+    setTimeout(() => {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100); // slight delay to ensure it's visible
   }
 
   // Optional: Update URL without reloading
   history.pushState({ section }, '', `#${section}`);
 }
+//OLD
+// function showSection(section) {
+//   // Hide all sections
+//   document.getElementById('homeSection').style.display = 'none';
+//   document.getElementById('aboutSection').style.display = 'none';
+//   document.getElementById('contactSection').style.display = 'none';
+
+//   // Show the selected section
+//   if (section === 'home') {
+//     document.getElementById('homeSection').style.display = '';
+//   } else if (section === 'about') {
+//     document.getElementById('aboutSection').style.display = '';
+//   } else if (section === 'contact') {
+//     document.getElementById('contactSection').style.display = '';
+//   }
+
+//   // Optional: Update URL without reloading
+//   history.pushState({ section }, '', `#${section}`);
+// }
 
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
