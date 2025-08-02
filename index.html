@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noimageindex, noarchive, nosnippet">
+  <meta name="googlebot" content="noimageindex, noarchive, nosnippet">
+  <meta name="ai" content="noai">
+  <meta name="generator" content="NOAI">
+  <meta property="title" content="Sterki Herz's Portfolio" />
+  <meta name="description" content="~ Where stories are drawn and emotions come to life ~">
+  <meta name="keywords" content="cute, sterkiherz, sterki herz, fantasy, mystery, comic, art, comedy, webtoon, portfolio">
+  <meta name="author" content="Sterki Herz">
+  <title>Sterki Herz's Art</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!--favicon-->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <!--icons-->
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+  <!--google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    body.landing {
+      background-color: var(--green);
+      color: var(--font-color);
+      margin: 0;
+      
+      scroll-behavior: smooth;
+    }
+
+    /* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 👈 push content to top */
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 50vh; /* 👈 add spacing from top */
+  background: transparent;
+}
+
+/* Keep hero text unaffected */
+.hero-content, .scroll-hint {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("assets/hero.png") center no-repeat;
+  background-size: cover;
+  z-index: 0;
+
+  /* Add a white gradient overlay at the bottom */
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 70%, #3A1429 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  max-width: 90%;
+}
+
+.hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero h2 {
+  color: #ffffff;
+text-shadow: 0 2px 6px rgba(0, 0, 0, 0.804); /* 👈 shadow only on text */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+text-shadow: 0 2px 6px rgba(0, 0, 0, 0.804); /* 👈 shadow only on text */
+}
+
+.enter-btn {
+  background: #ffdf9e;
+  color: #4F1743;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  display: inline-block;
+  font-weight:500;
+}
+.enter-btn:hover {
+  background: var(--highlight);
+}
+
+.c-btn {
+  background: #ffffff;
+  color: #4F1743;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  display: inline-block;
+  font-weight:500;
+}
+.c-btn:hover {
+  background: var(--highlight);
+}
+
+    /* Hub Sections */
+    .hub {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 3rem 1rem;
+      background-color: #3A1429;
+    }
+
+    .hub-card {
+      background: var(--brown);
+      color: wheat;
+      width: 280px;
+      margin: 1rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .hub-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hub-card h2 {
+      margin-bottom: 0.5rem;
+      color: var(--highlight);
+    }
+
+    .hub-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .hub-btn, .hub-card button {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      background: #ffce73;
+      color: var(--green);
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .hub-btn:hover {
+      background: var(--highlight);
+    }
+
+    .hub-card button[disabled] {
+      background: #75416b;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Scroll Hint */
+.scroll-hint {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0;
+  z-index: 2;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 5s;
+  transition: opacity 0.6s ease; /* smooth fade when hiding */
+text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* .p-info { */
+  /* position: relative; */
+  /* background-color: rgba(117, 65, 107, 0.5);
+  border-radius: 8px; */
+  /* padding: 0.3rem 0.6rem; */
+  /* backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1; */
+  /* color: white; */
+/* } */
+
+.p-info {
+  position: relative;
+  padding: 0.3rem 0.6rem;
+  color: white;
+  z-index: 1;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.699); /* 👈 shadow only on text */
+}
+
+  </style>
+</head>
+<body class="landing">
+
+  <!-- preloader -->
+  <div id="preloader">
+    <iconify-icon icon="solar:cat-linear" class="loader"></iconify-icon>
+  </div>
+
+
+  <!--<div id="particles-js"></div>-->
+  <div class="fireflies"></div>
+
+   <!-- Landing Page - Intro -->
+   <div id="landing">
+    <img src="assets/portfolio-intro.gif" alt="Landing animation" />
+   </div>
+
+  <!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg"></div> <!-- background with opacity fade -->
+
+  <div class="scroll-hint" id="scrollHint">
+    <br>
+    <h2 style="color: white;"><iconify-icon icon="solar:cat-linear"></iconify-icon></h2>
+    <h2 style="color: white;">Welcome, traveler, to the cozy hearth.</h2>
+    <p style="font-weight: bold;color: #88ffff;text-shadow: 0 0px 4px rgb(0, 0, 0);">~ Where each drawing tells a story and every color holds a feeling ~</p>
+
+    <p style="font-size: medium;">Psst! Scroll down <iconify-icon icon="pajamas:scroll-down"></iconify-icon></p>
+  </div>
+
+  <div class="hero-content" id="heroText">
+    <img style="width: 350px;" src="assets/logo.png">
+    
+    <p class="p-info">
+      Graphic Design • Illustration • Comics
+    </p>
+    
+    <a href="portfolio.html" class="enter-btn"><iconify-icon icon="majesticons:door-enter"></iconify-icon> Portfolio</a>
+    <a href="portfolio.html#contact" class="c-btn"><iconify-icon icon="healthicons:contact-support"></iconify-icon> Contact</a>
+  </div>
+</section>
+
+  <!-- Hub Sections -->
+  <section class="hub" id="hub-section">
+    <div class="hub-card">
+      <h2>Shop & Prints</h2>
+      <p>Coming soon: high-quality prints and exclusive merch.</p>
+      <button disabled><iconify-icon icon="svg-spinners:clock"></iconify-icon> Coming Soon</button>
+    </div>
+
+    <div class="hub-card">
+      <h2>My Comic</h2>
+      <p>Follow the journey of my upcoming fantasy webcomic.</p>
+      <a href="https://mwcomic.netlify.app/" class="hub-btn"><iconify-icon icon="mage:book"></iconify-icon> Learn More</a>
+    </div>
+
+    <div class="hub-card">
+      <h2>Artblog</h2>
+      <p>Behind the scenes, sketches, and creative thoughts.</p>
+      <a href="https://sterkiherz.tumblr.com/tagged/shmyart" class="hub-btn"><iconify-icon icon="line-md:rss"></iconify-icon> Visit Blog</a>
+    </div>
+  </section>
+
+<footer>
+      <span>© 2018 Sterki Herz</span>
+      <img width="50px" src="tiny-icon.png" alt="Tiny icon" />
+    </footer>
+
+<script>
+  // Fade hero text after scrolling down a bit
+  window.addEventListener("scroll", () => {
+    const heroText = document.getElementById("heroText");
+    if(window.scrollY > 80) {
+      heroText.classList.add("visible");
+    }
+  });
+
+  // Fade in teasers and hub cards when visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.hub-card').forEach(el => observer.observe(el));
+
+  // document.querySelectorAll('.teasers img, .hub-card').forEach(el => observer.observe(el));
+</script>
+
+
+<script src="/scripts/script.js"></script>
+
+<script>
+    //fireflies
+    document.addEventListener('DOMContentLoaded', () => {
+      const firefliesContainer = document.querySelector('.fireflies');
+    
+      for (let i = 0; i < 50; i++) {
+        const firefly = document.createElement('div');
+        firefly.classList.add('firefly');
+        firefly.style.top = Math.random() * 100 + 'vh';
+        firefly.style.left = Math.random() * 100 + 'vw';
+        firefly.style.setProperty('--dx', Math.random() - 0.5);
+        firefly.style.setProperty('--dy', Math.random() - 0.5);
+        firefliesContainer.appendChild(firefly);
+      }
+    });
+
+
+    //preloader
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      setTimeout(() => {
+          preloader.style.display = "none";
+      }, 500); // Adjust the delay to match the fade-out duration if needed
+      });
+
+
+  // Fade out scroll hint when user scrolls
+  window.addEventListener("scroll", () => {
+    const scrollHint = document.getElementById("scrollHint");
+    if(window.scrollY > 35) {
+      scrollHint.style.opacity = "0";
+    } else {
+      scrollHint.style.opacity = "1";
+    }
+  });
+
+    </script>
+
+</body>
+</html>
