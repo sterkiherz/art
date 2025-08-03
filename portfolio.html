@@ -248,6 +248,33 @@
       });
     </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  function showSection(sectionId) {
+    document.getElementById("homeSection").style.display = "none";
+    document.getElementById("aboutSection").style.display = "none";
+    document.getElementById("contactSection").style.display = "none";
+
+    const target = document.getElementById(sectionId);
+    if (target) target.style.display = "block";
+  }
+
+  // Check URL hash when page loads
+  if (window.location.hash === "#contact") {
+    showSection("contactSection");
+  } else if (window.location.hash === "#about") {
+    showSection("aboutSection");
+  }
+
+  // Optional: Update when hash changes without reload
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash === "#contact") showSection("contactSection");
+    if (window.location.hash === "#about") showSection("aboutSection");
+    if (window.location.hash === "#home") showSection("homeSection");
+  });
+});
+</script>
+
 
 
 
