@@ -219,9 +219,9 @@ text-shadow: 0 2px 6px rgba(0, 0, 0, 0.804); /* 👈 shadow only on text */
   opacity: 0;
   z-index: 2;
   animation: fadeIn 2s ease forwards;
-  animation-delay: 5s;
+  /* animation-delay: 5s; -->conditional via js */
   transition: opacity 0.6s ease; /* smooth fade when hiding */
-text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
+  text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
 }
 
 @keyframes fadeIn {
@@ -234,18 +234,6 @@ text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
   width: 180px;
   display: block;
 }
-
-/* .p-info { */
-  /* position: relative; */
-  /* background-color: rgba(117, 65, 107, 0.5);
-  border-radius: 8px; */
-  /* padding: 0.3rem 0.6rem; */
-  /* backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px); */
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 1; */
-  /* color: white; */
-/* } */
 
 .p-info {
   position: relative;
@@ -286,7 +274,7 @@ text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
     <h2 style="color: white;">Welcome, traveler, to the cozy hearth.</h2>
     <p style="font-weight: bold;color: #88ffff;text-shadow: 0 0px 4px rgb(0, 0, 0);">~ Where each drawing tells a story and every color holds a feeling ~</p>
 
-    <p style="font-size: medium;">Psst! Scroll down <iconify-icon icon="pajamas:scroll-down"></iconify-icon></p>
+    <p style="font-size: medium;">Psst! Scroll down <iconify-icon icon="line-md:download-loop"></iconify-icon></p>
   </div>
 
   <div class="hero-content" id="heroText">
@@ -307,35 +295,65 @@ text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
       <!-- <img class="hub-banner" src="assets/shop-banner.png" alt="Shop Banner"> -->
       <h2>Shop & Prints</h2>
       <p>Limited-edition prints and handmade treasures are on their way to the shop.</p>
-      <button disabled><iconify-icon icon="svg-spinners:clock"></iconify-icon> Coming Soon</button>
+      <button disabled><iconify-icon icon="icon-park-solid:shopping"></iconify-icon> Coming Soon</button>
+      <!-- https://www.inprnt.com/gallery/sterkiherz/ -->
     </div>
 
     <div class="hub-card">
       <!-- <img class="hub-banner" src="assets/yt-banner.png" alt="YT Banner"> -->
       <h2>Art Youtube Channel</h2>
       <p>Cozy art sessions, speedpaints, and the stories behind each piece.</p>
-      <button disabled><iconify-icon icon="svg-spinners:clock"></iconify-icon> Coming Soon</button>
+      <button disabled><iconify-icon icon="mingcute:youtube-fill"></iconify-icon> Coming Soon</button>
+      <!-- https://www.youtube.com/@sterkiherz -->
     </div>
 
     <div class="hub-card">
       <!-- <img class="hub-banner" src="assets/comic-banner.png" alt="Comic Banner"> -->
       <h2>My Comic</h2>
       <p>Dive into a whimsical world filled with mystery, magic, and adventure.</p>
-      <a href="https://mwcomic.netlify.app/" class="hub-btn"><iconify-icon icon="mage:book"></iconify-icon> Learn More</a>
+      <a href="https://mwcomic.netlify.app/" class="hub-btn"><iconify-icon icon="ion:book"></iconify-icon> Learn More</a>
     </div>
 
     <div class="hub-card">
       <!-- <img class="hub-banner" src="assets/artb-banner.png" alt="ArtBlog Banner"> -->
       <h2>Artblog</h2>
       <p>A peek into my sketchbook: WIPs, doodles, and ideas in the making.</p>
-      <a href="https://sterkiherz.tumblr.com/tagged/shmyart" class="hub-btn"><iconify-icon icon="line-md:rss"></iconify-icon> Visit Blog</a>
-    </div>
+      <a href="https://sterkiherz.tumblr.com/tagged/shmyart" class="hub-btn"><iconify-icon icon="mingcute:rss-fill"></iconify-icon> Visit Blog</a>
+    </div> 
   </section>
 
 <footer>
       <span>© 2018 Sterki Herz</span>
       <img width="50px" src="tiny-icon.png" alt="Tiny icon" />
     </footer>
+
+
+<script src="/scripts/script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const landing = document.getElementById("landing");
+  const scrollHint = document.getElementById("scrollHint");
+  const gifDuration = 4000; // length of GIF in ms
+
+  if (!sessionStorage.getItem("introPlayed")) {
+    // First visit: play intro
+    scrollHint.style.animationDelay = "5s"; // keep delay for when gif plays
+
+    setTimeout(() => {
+      landing.classList.add("hide");
+      setTimeout(() => landing.style.display = "none", 500);
+      sessionStorage.setItem("introPlayed", "true");
+    }, gifDuration);
+
+  } else {
+    // Already played: skip intro, show hint instantly
+    landing.style.display = "none";
+    scrollHint.style.animationDelay = "0s";
+  }
+});
+</script>
+
 
 <script>
   // Fade hero text after scrolling down a bit
@@ -360,8 +378,25 @@ text-shadow: 0 6px 15px rgba(0, 0, 0, 0.901); /* 👈 shadow only on text */
   // document.querySelectorAll('.teasers img, .hub-card').forEach(el => observer.observe(el));
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const landing = document.getElementById("landing");
+  const gifDuration = 4000; // length of your GIF in ms (adjust if needed)
 
-<script src="/scripts/script.js"></script>
+  if (!sessionStorage.getItem("introPlayed")) {
+    // First visit this session: show the landing
+    setTimeout(() => {
+      landing.classList.add("hide");
+      setTimeout(() => landing.style.display = "none", 500); // match transition
+      sessionStorage.setItem("introPlayed", "true");
+    }, gifDuration);
+  } else {
+    // Already played this session: skip it
+    landing.style.display = "none";
+  }
+});
+</script>
+
 
 <script>
     //fireflies
